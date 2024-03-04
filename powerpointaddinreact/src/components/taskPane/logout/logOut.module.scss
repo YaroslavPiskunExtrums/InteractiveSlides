@@ -1,0 +1,6 @@
+.logOutBtn {
+  @apply absolute flex gap-1 justify-center items-center top-5 left-5 border-none bg-transparent;
+  svg {
+    @apply w-5 h-5;
+  }
+}

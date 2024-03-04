@@ -1,0 +1,33 @@
+.input {
+  @apply bg-white p-1 w-full border-b-[1px] border-b-[#000]  text-sm leading-5 block h-[calc(1.5em+0.75rem+2px)] font-normal text-[#495057] outline-none;
+  &:hover {
+    @apply bg-[#f8f8f8];
+  }
+}
+
+.label {
+  span {
+    @apply mb-2 text-xs leading-5 text-[#919191];
+  }
+  .colorInputWrapper {
+    @apply flex items-center max-w-[120px];
+    .colorInputValue {
+      @apply w-[calc(100%-32px)];
+      .colorInputValueText {
+        @apply mb-0;
+      }
+      .colorInputValueInput {
+        @apply w-full outline-none bg-white p-1 border-b-[1px] border-b-[#000]  text-sm leading-5 h-[calc(1.5em+0.75rem+2px)] font-normal text-[#495057];
+        &:hover {
+          @apply bg-[#f8f8f8];
+        }
+      }
+    }
+    .colorInput {
+      @apply p-0.5 w-8 h-8 border-none bg-transparent cursor-pointer flex mb-0;
+      &::-webkit-color-swatch {
+        @apply h-full w-full border border-black border-solid;
+      }
+    }
+  }
+}

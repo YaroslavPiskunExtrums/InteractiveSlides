@@ -1,0 +1,40 @@
+.figure-personalization
+  width: 100%
+  height: 100%
+  padding: 0 0.5rem
+  display: flex
+  flex-direction: column
+  justify-content: end
+  textarea
+    display: block
+    padding: 0
+
+  .plus-icon
+    transform: scale(2)
+
+  &_personalization
+
+    &.--image
+      width: 100%
+      height: 85%
+      img
+        width: 100%
+        height: 100%
+        display: block
+
+
+    &_image-upload
+      width: 100%
+      height: 100%
+      &.--empty
+        font-size: 1.5rem
+        border: 2px dashed #262626
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        color: #262626
+        cursor: pointer
+        gap: 1rem
+        height: calc(100% - 1rem)
+        padding: 0

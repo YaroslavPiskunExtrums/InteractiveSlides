@@ -1,0 +1,91 @@
+﻿#main-panel {
+    min-height: 100vh;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#blob-status{
+    width: 100%;
+    max-height: 25vh;
+    bottom: 0;
+    overflow: auto;
+    font-size: 0.6em;
+}
+
+
+.preview-presentation {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.control-panel {
+  position: absolute;
+  top: 1rem;
+  width: 100%;
+}
+
+.user-info-username {
+  max-width: 50%;
+}
+
+.user-info-controls {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.control-panel-bottom-panel {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 0.25rem;
+  font-size: 0.9rem;
+}
+
+.control-panel #logout-button, .control-panel #admin-button, .control-panel #admin-back-button {
+  width: auto;
+  position: static;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-panel #logout-button svg, .control-panel #admin-button svg, .control-panel .user-info svg,  .control-panel #admin-back-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/*#logout-button {*/
+/*  left: 1rem;*/
+/*}*/
+
+/*#admin-button {*/
+/*  right: 1rem;*/
+/*}*/
+
+#open-presentation {
+  color: #0078d4;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#copy-to-clipboard {
+  cursor: pointer;
+}
+
+#copy-to-clipboard-copied-icon {
+  display: none;
+}

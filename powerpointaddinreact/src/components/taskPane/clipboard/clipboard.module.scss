@@ -1,0 +1,9 @@
+.clipboardWrapper {
+  @apply flex gap-1 justify-center items-center absolute bottom-1 left-0 w-full;
+  .openPresentation {
+    @apply text-[#0078d4] underline cursor-pointer;
+  }
+  .clipboardBtn {
+    @apply border-none bg-transparent;
+  }
+}

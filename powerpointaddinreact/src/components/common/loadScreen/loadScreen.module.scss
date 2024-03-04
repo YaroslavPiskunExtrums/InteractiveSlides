@@ -1,0 +1,9 @@
+.wrapper {
+  @apply w-screen h-screen text-center flex justify-center flex-col items-center bg-white;
+  .title {
+    @apply text-[2rem] font-medium leading-[1.2] mb-2;
+  }
+  .text {
+    @apply mb-4;
+  }
+}

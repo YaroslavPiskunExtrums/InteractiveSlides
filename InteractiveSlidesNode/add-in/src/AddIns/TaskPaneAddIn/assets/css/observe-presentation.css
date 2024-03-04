@@ -1,0 +1,32 @@
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  position: fixed;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  top: 1%;
+  left: 5%;
+  transition: color 0.2s ease-in-out;
+}
+
+.back-button:hover {
+  color: #3498db;
+}
+
+.back-button_icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.main-panel {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+

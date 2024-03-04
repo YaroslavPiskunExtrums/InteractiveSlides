@@ -1,0 +1,8 @@
+.btn {
+  @apply inline-block font-normal text-center align-middle py-1.5 px-3 leading-normal transition-all;
+  &:hover {
+    background-color: var(--btnConfigHoverColor) !important;
+    border-color: var(--btnConfigHoverBorderColor) !important;
+    color: var(--btnConfigHoverTextColor) !important;
+  }
+}

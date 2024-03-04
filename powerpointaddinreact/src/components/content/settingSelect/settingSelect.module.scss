@@ -1,0 +1,12 @@
+.selectWrapper {
+  @apply flex flex-col flex-auto;
+  .selectLabel {
+    @apply m-0;
+  }
+  .smallSelectLabel {
+    @apply mb-2 text-xs leading-5 text-[#919191];
+  }
+  .select {
+    @apply py-1 px-0 w-full border-b-black border-b text-sm leading-5 block text-[#495057] bg-white h-[calc(1.5em+0.75rem+2px)] rounded outline-none transition-all;
+  }
+}

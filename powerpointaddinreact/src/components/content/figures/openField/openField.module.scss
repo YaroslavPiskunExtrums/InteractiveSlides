@@ -1,0 +1,25 @@
+.openFieldQuestion {
+  color: var(--textConfigTextColor);
+  font-family: var(--fontFamily);
+  font-size: calc(var(--questionConfigFontSize) * 1px);
+}
+
+.formGroup {
+  @apply flex flex-col mb-4;
+  .openFieldInput.formControl {
+    @apply block w-[95%] mx-auto h-[calc(1.5em+0.75rem+2px)] py-1.5 px-3 text-base font-normal leading-normal text-[#495057] bg-white bg-clip-padding border border-gray-300 rounded transition-all;
+
+    background-color: var(--inputConfigBackColor);
+    border-color: var(--inputConfigBorderColor);
+    color: var(--inputConfigTextColor);
+    border-radius: calc(var(--inputConfigBorderRadius) * 1px);
+    font-size: calc(var(--inputConfigFontSize) * 1px);
+    &:focus {
+      @apply text-gray-600 bg-white border-[#80bdff] outline-none;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+  textarea.openFieldInput.formControl {
+    @apply resize-y max-h-[calc(100vh-20vh)];
+  }
+}

@@ -1,0 +1,10 @@
+node_modules
+ci
+dist
+docs
+
+tmp/**
+
+README.md
+
+*.yml

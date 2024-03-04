@@ -1,0 +1,22 @@
+.personalizationTextarea {
+  @apply bg-transparent w-[95%] max-h-[300px] my-0 mx-auto block outline-none border  resize-y border-dashed border-[#495057];
+
+  font-size: calc(var(--fontSize) * 1px);
+  color: var(--fontColor);
+  font-family: var(--fontFamily);
+  text-align: var(--layout);
+}
+
+.fileContainer {
+  @apply w-full h-40 max-h-[calc(100vh-15vh)];
+  .fileInput {
+    @apply hidden;
+  }
+  .personalizationImage {
+    @apply w-full max-h-[calc(100vh-15vh)];
+    border-radius: calc(var(--borderRadius) * 1%);
+  }
+  .addFileBtn {
+    @apply w-3/4 h-full my-0 mx-auto flex gap-3 justify-center items-center font-semibold text-3xl border-2 border-black rounded-xl text-black border-dashed;
+  }
+}

@@ -1,0 +1,67 @@
+.dropdown, .input, .options, .option
+	border-radius: 5px
+
+.options
+	width: 100%
+	height: max-content
+	cursor: pointer
+	border: none
+	outline: none
+	position: absolute
+	top: 0
+	padding: 4px
+	box-shadow: 0 2px 5px rgb(124, 130, 141)
+	overflow: hidden
+	opacity: 0
+	transform: translateY(-100%)
+	visibility: hidden
+	z-index: 999
+	max-height: 150px
+	overflow-y: auto
+
+.option
+	width: 100%
+	border: none
+	padding: 4px
+	color: #292d34
+	cursor: pointer
+	display: flex
+	align-items: center
+	justify-content: space-between
+
+	&:not(:last-of-type)
+		margin-bottom: 8px
+
+	&:hover
+		color: #fff
+		background: #5bc5fa
+	.option-text
+		text-overflow: ellipsis
+		white-space: nowrap
+		overflow: hidden
+		text-align: start
+	.option-selected-mark
+		width: 20px
+		height: 100%
+		display: inline-block
+		margin-right: 20px
+
+.dropdown
+	width: 100%
+	height: max-content
+	position: relative
+	background: #fff
+	cursor: pointer
+
+	.dropdown_value
+		text-align: left
+		padding: 0.25rem 0.5rem
+
+.open
+	opacity: 1
+	visibility: visible
+	transform: translateY(0)
+
+.dropdown_icon
+	position: absolute
+	cursor: pointer

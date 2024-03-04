@@ -1,0 +1,16 @@
+.containerForFile {
+  @apply flex items-center relative h-8;
+
+  .inputWithFileName {
+    @apply absolute top-0 left-0 w-[calc(100%-35px)] border-b-2 border-b-black/15;
+  }
+  .addFileContainer {
+    @apply gap-5 mb-0 w-full h-full relative z-[1];
+  }
+  .fileInput {
+    @apply hidden;
+  }
+  div {
+    @apply flex justify-end items-center h-full;
+  }
+}

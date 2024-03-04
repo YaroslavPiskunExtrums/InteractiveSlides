@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>Sign up</title>
+  <link href='./assets/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
+  <link href='./assets/css/login.css' rel='stylesheet' type='text/css' />
+
+
+  <script src='https://appsforoffice.microsoft.com/lib/1/hosted/office.js' type='text/javascript'></script>
+  <script src='./assets/js/jquery-3.6.0.min.js' type='text/javascript'></script>
+  <script src='./assets/js/bootstrap.min.js' type='text/javascript'></script>
+  <script src='./assets/js/configuration.js' type='text/javascript'></script>
+  <script src='./assets/js/common.js' type='text/javascript'></script>
+  <script src='../Common/js/addinid.js' type='text/javascript'></script>
+</head>
+<body>
+<main>
+  <div class='main-panel p-4'>
+    <img class='w-75 mb-5' src='../Common/img/logo.png' alt='interactive slide logo' />
+    <form id='sign-up-form' class='login-form'>
+      <div class='login-form-inputs'>
+        <label for='sign-up-form-email'>
+          Email
+          <input type='email' id='sign-up-form-email' name='sign-up-form-email' placeholder='Enter your email' required>
+        </label>
+        <label for='sign-up-form-username'>
+          Username
+          <input type='text' id='sign-up-form-username' name='sign-up-form-first-name'
+                 placeholder='Enter your Username' required>
+        <label for='sign-up-form-password'>
+          Password
+          <input type='password' id='sign-up-form-password' name='sign-up-form-password'
+                 placeholder='Enter your password' required>
+        </label>
+        <label for='sign-up-form-company-name'>
+          Company Name
+          <input id='sign-up-form-company-name' name='sign-up-form-email'
+                 placeholder='Enter your company name'
+                 required>
+        </label>
+        <label for='sign-up-form-company-domain'>
+          Company Domain
+          <input type='email' id='sign-up-form-company-domain' name='sign-up-form-email'
+                 placeholder='Enter your company domain'
+                 required>
+        </label>
+      </div>
+      <div class='login-form-buttons'>
+        <button id='sign-up-form-sign-up' class='login-form-button'>
+          Sign Up
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+<script src='./assets/js/authFetch.js' type='text/javascript'></script>
+<script src='./assets/js/signup.js'></script>
+</body>
+</html>

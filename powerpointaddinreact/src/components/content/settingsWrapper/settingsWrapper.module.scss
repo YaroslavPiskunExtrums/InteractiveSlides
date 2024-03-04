@@ -1,0 +1,33 @@
+.mainWrapper {
+  @apply w-full;
+  .mainContainer {
+    @apply w-full py-0 px-4;
+    .scrollContainer {
+      @apply bg-white h-screen overflow-y-auto;
+      &::-webkit-scrollbar {
+        @apply w-1 h-1 bg-transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        @apply rounded bg-[#d0d1d2];
+      }
+      &::-webkit-scrollbar-track {
+        @apply rounded bg-transparent shadow-none;
+      }
+      .headerElement {
+        @apply flex items-center justify-between bg-black p-4 text-white leading-6;
+        .headerText {
+          @apply ml-3;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .mainWrapper {
+    @apply flex justify-center;
+    .mainContainer {
+      @apply max-w-[50%];
+    }
+  }
+}

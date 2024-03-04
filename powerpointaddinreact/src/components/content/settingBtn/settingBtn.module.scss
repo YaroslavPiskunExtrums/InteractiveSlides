@@ -1,0 +1,11 @@
+.btn {
+  @apply px-3 py-1.5 transition-all w-full mb-4 rounded border-none flex items-center justify-center gap-1.5 hover:transition-all;
+}
+
+.addBtn {
+  @apply bg-[rgb(226,230,234)]/[0.3] hover:bg-[rgb(226,230,234)]/100 text-black mt-5;
+}
+
+.moveBtn {
+  @apply bg-[rgb(29,33,36)]/[0.9] hover:bg-[rgb(29,33,36)]/100 text-white mt-4;
+}

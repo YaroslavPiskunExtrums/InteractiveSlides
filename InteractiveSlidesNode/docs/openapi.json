@@ -1,0 +1,1320 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Content creator Service",
+    "version": "1.0.0",
+    "description": "Content Creator Service",
+    "license": {
+      "url": "https://ai.maverickx.io",
+      "name": "No License"
+    }
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "https://ai.maverickx.io/api"
+    },
+    {
+      "url": "http://localhost:5420"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Bearer authentication is an HTTP authentication scheme"
+      }
+    },
+    "schemas": {
+      "ContentSnapshot": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "jd29372t35123g"
+          },
+          "name": {
+            "type": "string"
+          },
+          "template_id": {
+            "type": "string",
+            "example": "f923gf0dm6hs"
+          },
+          "inputs": {
+            "type": "object"
+          },
+          "content": {
+            "type": "object"
+          },
+          "tags": {
+            "type": "string",
+            "example": "tag1,tag2"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          }
+        }
+      },
+      "TemplateSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "jd29372t35123g"
+          },
+          "name": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object"
+          },
+          "tags": {
+            "type": "string",
+            "example": "tag1,tag2"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          }
+        }
+      },
+      "ResourceSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "jd29372t35123g"
+          },
+          "original_name": {
+            "type": "string"
+          },
+          "mime_type": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          }
+        }
+      },
+      "VisionProcessingSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "jd29372t35123g"
+          },
+          "hash_sum": {
+            "type": "string",
+            "example": "4f64b8bdcce414a44ccef28dfc81c1b9"
+          },
+          "image_url": {
+            "type": "string",
+            "example": "https://example.com/image.jpg"
+          },
+          "external_id": {
+            "type": "string",
+            "example": "abcd1234"
+          },
+          "signature": {
+            "type": "string",
+            "example": "4f64b8bdcce414a44ccef28dfc81c1b9"
+          },
+          "processed_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2022-01-01"
+          },
+          "vision": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "text": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "labels": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "desc": {
+                      "type": "string"
+                    },
+                    "score": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "BatchSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "active",
+              "completed",
+              "failed"
+            ]
+          },
+          "notes": {
+            "type": "object"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        }
+      },
+      "GenericError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductContentSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "error_message": {
+            "type": "string"
+          },
+          "approved_at": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object"
+          },
+          "ai_content": {
+            "type": "object"
+          },
+          "human_content": {
+            "type": "object"
+          },
+          "attributes_total": {
+            "type": "number"
+          },
+          "attributes_required": {
+            "type": "number"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/hooks/ack": {
+      "post": {
+        "summary": "Accept external webhook",
+        "description": "Accept external webhook",
+        "tags": [
+          "Hooks"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resource deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Healthcheck",
+        "operationId": "healthcheck",
+        "responses": {
+          "200": {
+            "description": "Request healthcheck",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Note: This should never happen",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": []
+      }
+    },
+    "/templates": {
+      "post": {
+        "summary": "Create a new template",
+        "operationId": "createTemplate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Template created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Templates"
+        ]
+      },
+      "get": {
+        "summary": "List templates",
+        "operationId": "listTemplates",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include_content",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Templates list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Templates"
+        ]
+      }
+    },
+    "/templates/{id}": {
+      "patch": {
+        "summary": "Update template by ID",
+        "operationId": "updateTemplate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Template updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Templates"
+        ]
+      },
+      "delete": {
+        "summary": "Delete template",
+        "operationId": "deleteTemplate",
+        "responses": {
+          "200": {
+            "description": "Template deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Templates"
+        ]
+      },
+      "get": {
+        "summary": "Get template by ID",
+        "operationId": "getTemplate",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Template found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Templates"
+        ]
+      }
+    },
+    "/resources": {
+      "post": {
+        "summary": "Upload resource",
+        "description": "Upload resource",
+        "operationId": "uploadResource",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string"
+                  },
+                  "image_url": {
+                    "type": "string"
+                  },
+                  "file_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resource uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "res": {
+                      "$ref": "#/components/schemas/ResourceSchema"
+                    },
+                    "link": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resource Library"
+        ]
+      },
+      "get": {
+        "summary": "List resources",
+        "description": "List resources",
+        "operationId": "listResources",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List resources",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResourceSchema"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resource Library"
+        ]
+      }
+    },
+    "/resources/{id}": {
+      "delete": {
+        "summary": "Delete resource",
+        "description": "Delete resource",
+        "operationId": "deleteResource",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "deleted": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resource Library"
+        ]
+      }
+    },
+    "/resources/{id}/link": {
+      "get": {
+        "summary": "Generate resource link",
+        "description": "Generate resource link",
+        "operationId": "generateLink",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource link",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "link": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resource Library"
+        ]
+      }
+    },
+    "/resources/{id}/ocr": {
+      "get": {
+        "summary": "Process OCR",
+        "description": "Execute ML model to extract text & labels from image",
+        "operationId": "processOcr",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Resource id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resource link",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "labels": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "desc": {
+                                "type": "string"
+                              },
+                              "score": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        },
+                        "annotations": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resource Library"
+        ]
+      }
+    },
+    "/creator": {
+      "post": {
+        "summary": "Generate text",
+        "operationId": "generateText",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "default": "text",
+                    "enum": [
+                      "text"
+                    ]
+                  },
+                  "features": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "default": "feature",
+                      "enum": [
+                        "feature"
+                      ]
+                    }
+                  },
+                  "examples": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "default": "example"
+                    }
+                  },
+                  "max_tokens": {
+                    "type": "integer",
+                    "default": 100
+                  },
+                  "rules": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "default": "rule"
+                        },
+                        "probability": {
+                          "type": "number",
+                          "default": 0.1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Generate text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Content Creator"
+        ]
+      }
+    },
+    "/v2/content": {
+      "get": {
+        "operationId": "listProducts",
+        "summary": "List products",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "number",
+                      "description": "Total number of products"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProductContentSchema"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Content Library V2"
+        ]
+      }
+    },
+    "/v2/content/{pid}": {
+      "post": {
+        "operationId": "saveContentAttributes",
+        "summary": "Save content attributes",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Content Library V2"
+        ]
+      },
+      "get": {
+        "operationId": "getSingleProduct",
+        "summary": "Get single product",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "$ref": "#/components/schemas/ProductContentSchema"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Content Library V2"
+        ]
+      }
+    },
+    "/v2/content/{pid}/flags": {
+      "post": {
+        "operationId": "assignProductFlag",
+        "summary": "Assign product flag",
+        "parameters": [
+          {
+            "name": "pid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "flag": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Content Library V2"
+        ]
+      }
+    },
+    "/batches": {
+      "get": {
+        "summary": "List batches",
+        "tags": [
+          "Processing Batches",
+          "Batch Processing"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limit",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Offset",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of batches",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/BatchSchema"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/batches/current": {
+      "get": {
+        "summary": "Get current batch",
+        "operationId": "getCurrentBatch",
+        "description": "Get current batch",
+        "responses": {
+          "200": {
+            "description": "Current batch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSchema"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Batch Processing"
+        ]
+      }
+    },
+    "/batches/{id}": {
+      "patch": {
+        "summary": "Update batch",
+        "operationId": "updateBatch",
+        "description": "Update batch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSchema"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Batch Processing"
+        ]
+      },
+      "get": {
+        "summary": "Get batch by ID",
+        "operationId": "getBatchByID",
+        "description": "Get batch by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Batch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSchema"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Batch Processing"
+        ]
+      }
+    },
+    "/batches/{id}/members": {
+      "get": {
+        "summary": "List batch members",
+        "operationId": "listMembers",
+        "description": "List batch members",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": [
+          "Batch Processing"
+        ]
+      },
+      "responses": {
+        "200": {
+          "description": "Batch members",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ProductContentSchema"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

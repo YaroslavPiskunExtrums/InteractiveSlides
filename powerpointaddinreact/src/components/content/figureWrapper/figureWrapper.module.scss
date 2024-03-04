@@ -1,0 +1,30 @@
+.main {
+  @apply flex items-center flex-col min-h-screen w-full pt-[15vh] mb-[25vh];
+  .content {
+    @apply w-full h-full;
+  }
+  .dropdown {
+    @apply absolute top-4 left-4 inline-flex align-middle leading-normal;
+    .dropdownIcon {
+      @apply cursor-pointer;
+      .biDotsVertical {
+        @apply mt-1.5;
+      }
+    }
+    .dropdownMenu {
+      @apply absolute top-0 right-auto left-full z-50 hidden float-left min-w-40 py-2 mb-0.5 ml-1 text-base text-[#212529] text-left list-none bg-white bg-clip-padding rounded border border-black/15;
+      .dropdownItem {
+        @apply block w-full py-1 px-6 clear-both font-normal text-[212529] bg-transparent border-0 whitespace-nowrap;
+        &:hover {
+          @apply text-[#16181b] bg-[#e9ecef];
+        }
+      }
+    }
+    .dropdownMenu.openModalDropdown {
+      @apply block;
+    }
+  }
+  .dropdown.hide {
+    @apply hidden;
+  }
+}

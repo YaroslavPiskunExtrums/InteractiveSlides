@@ -1,0 +1,219 @@
+.range-selector-option #form-title {
+  margin-top: 0;
+  font-weight: 400;
+  text-align: center;
+}
+.range-selector-option #range-option-slider {
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  position: relative;
+  width: 100%;
+  height: 50px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.range-selector-option #range-option-slider::before {
+  content: " ";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  /* The following css will be used for reference and it will be generated in js */
+  /* width: calc(100% * (4 / 5));  */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: grey;
+}
+.range-selector-option #range-option-slider input, .range-selector-option #range-option-slider label {
+  box-sizing: border-box;
+  flex: 1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.range-selector-option #range-option-slider label {
+  display: inline-block;
+  position: relative;
+  width: 20%;
+  height: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.range-selector-option #range-option-slider label::before {
+  content: attr(data-range-option);
+  position: absolute;
+  left: 50%;
+  padding-top: 10px;
+  transform: translate(-50%, 45px);
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: all 0.15s ease-in-out;
+}
+.range-selector-option #range-option-slider label::after {
+  content: " ";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid grey;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 1;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+.range-selector-option #range-option-slider label:hover::after {
+  transform: translate(-50%, -50%) scale(1.25);
+}
+.range-selector-option #range-option-slider input {
+  display: none;
+}
+.range-selector-option #range-option-slider input:checked + label::before {
+  font-weight: bold;
+  opacity: 1;
+}
+.range-selector-option #range-option-slider input:checked + label::after {
+  border-width: 4px;
+  transform: translate(-50%, -50%) scale(0.75);
+}
+.range-selector-option #range-option-slider input:checked ~ #range-option-pos {
+  opacity: 1;
+}
+/* the following css is for reference and it will be generated in js */
+/* .range-selector-option #range-option-slider input:checked:nth-child(1) ~ #range-option-pos {
+  left: 10%;
+}
+.range-selector-option #range-option-slider input:checked:nth-child(3) ~ #range-option-pos {
+  left: 30%;
+}
+.range-selector-option #range-option-slider input:checked:nth-child(5) ~ #range-option-pos {
+  left: 50%;
+}
+.range-selector-option #range-option-slider input:checked:nth-child(7) ~ #range-option-pos {
+  left: 70%;
+}
+.range-selector-option #range-option-slider input:checked:nth-child(9) ~ #range-option-pos {
+  left: 90%;
+} */
+.range-selector-option #range-option-slider #range-option-pos {
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #000;
+  border-radius: 50%;
+  transition: all 0.15s ease-in-out;
+  transform: translate(-50%, -50%);
+  border: 2px solid #fff;
+  opacity: 0;
+  z-index: 2;
+}
+form:valid #range-option-slider input + label::before {
+  transform: translate(-50%, 45px) scale(0.9);
+  transition: all 0.15s linear;
+}
+form:valid #range-option-slider input:checked + label::before {
+  transform: translate(-50%, 45px) scale(1.1);
+  transition: all 0.15s linear;
+}
+.range-selector-option + button {
+  display: block;
+  position: relative;
+  margin: 56px auto 0;
+  padding: 10px 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  transition: all 0.15s ease-in-out;
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 600;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  outline: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+.range-selector-option + button:hover {
+  background: #000;
+  color: #fff;
+}
+.range-selector-option + button:hover:active {
+  transform: scale(0.9);
+}
+.range-selector-option + button:focus {
+  background: #4caf50;
+  border-color: #4caf50;
+  color: #fff;
+  pointer-events: none;
+}
+.range-selector-option + button:focus::before {
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+.range-selector-option + button::before {
+  display: inline-block;
+  width: 0;
+  opacity: 0;
+  content: "";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  margin-right: 0;
+  transform: rotate(0deg);
+}
+form:invalid + button {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+    width: 24px;
+    opacity: 1;
+    margin-right: 12px;
+  }
+  to {
+    transform: rotate(360deg);
+    width: 24px;
+    opacity: 1;
+    margin-right: 12px;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    width: 24px;
+    opacity: 1;
+    margin-right: 12px;
+  }
+  to {
+    transform: rotate(360deg);
+    width: 24px;
+    opacity: 1;
+    margin-right: 12px;
+  }
+}

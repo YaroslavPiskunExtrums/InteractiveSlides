@@ -1,0 +1,9 @@
+.linkContainer {
+  @apply no-underline mb-3 cursor-pointer p-3 w-full rounded-md flex items-center bg-[#f8f8f8];
+  .linkSpan {
+    @apply bg-[#d9d9d9] w-6 h-6 rounded;
+  }
+  .linkTitle {
+    @apply font-medium leading-6 ml-2 text-[#212529];
+  }
+}

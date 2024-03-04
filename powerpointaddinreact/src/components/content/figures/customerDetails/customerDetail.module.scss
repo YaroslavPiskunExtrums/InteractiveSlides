@@ -1,0 +1,33 @@
+.customerDetailsForm {
+  border-radius: calc(var(--formConfigBorderRadius) * 1px);
+  border: 1px solid var(--formConfigBorderColor);
+  background-color: var(--formConfigBackColor);
+  padding: 20px;
+
+  h2 {
+    @apply text-[2rem] mb-2 font-medium leading-tight;
+  }
+
+  .formGroup {
+    @apply flex flex-col mb-4;
+    label {
+      @apply mb-2;
+    }
+    .customerDetailsInput.formControl {
+      @apply block w-full h-[calc(1.5em+0.75rem+2px)] py-1.5 px-3 text-base font-normal leading-normal text-[#495057] bg-white bg-clip-padding border border-gray-300 rounded transition-all;
+      background-color: var(--inputConfigBackColor);
+      border-color: var(--inputConfigBorderColor);
+      color: var(--inputConfigTextColor);
+      border-radius: calc(var(--inputConfigBorderRadius) * 1px);
+      font-size: calc(var(--inputConfigFontSize) * 1px);
+
+      &:focus {
+        @apply text-gray-600 bg-white border-[#80bdff] outline-none;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+    }
+    textarea.customerDetailsInput.formControl {
+      height: auto;
+    }
+  }
+}

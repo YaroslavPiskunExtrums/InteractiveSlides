@@ -1,0 +1,6 @@
+.isLinkContainer {
+  @apply flex items-center gap-2 text-xl;
+  .isLink {
+    @apply w-5 h-5;
+  }
+}

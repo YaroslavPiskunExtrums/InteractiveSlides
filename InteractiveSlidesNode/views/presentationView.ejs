@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        <%= title %>
+    </title>
+
+    <link rel="stylesheet" href="../public/reveal-js/reset.css">
+    <link rel="stylesheet" href="../public/reveal-js/reveal.css">
+    <!--    <link rel="stylesheet" href="../public/reveal-js/theme/black.css">-->
+
+    <style>
+      .controls-arrow {
+        color: <%= controls_colors %>;
+      }
+
+      .slide-image {
+        max-width: 1280px;
+        max-height: 720px;
+      }
+
+      .presentation-figure-holder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1280px;
+        height: 720px;
+      }
+
+      .presentation-figure-holder.--classic {
+        width: 960px;
+        height: 720px;
+      }
+
+      .presentation-figure-holder.--adaptive {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
+    <script defer='defer' src='<%= manifest['runtime.js'] %>'></script>
+    <script defer='defer' src='<%= manifest['vendors.js'] %>'></script>
+    <script defer='defer' src='<%= manifest['main.js'] %>'></script>
+    <link href='<%= manifest['main.css'] %>' rel='stylesheet'>
+</head>
+<body>
+<% if (images && images.length > 0) { %>
+    <div class='reveal'>
+        <div id='save-button'>
+
+        </div>
+        <div class="slides">
+            <% images.forEach((image) => { %>
+                <section
+                        data-background-gradient="linear-gradient(to right, <%= presentation_color ? presentation_color : '#2c3e50' %>,  <%= presentation_color ? presentation_color : '#4ca1af' %>)"
+                        id="<%= image.slide %>_slide"
+                        data-transition="<%- transition || 'none' %>">
+                    <div style='position: relative;' id="<%= image.slide %>_slide_holder">
+                        <img id="<%= image.slide %>_slide_image" class='slide-image' src="<%= image.url %>"
+                             alt="<%= image.slide %> slide">
+                        <% if (image.width / image.height === 4 / 3) { %>
+                            <div class='presentation-figure-holder --classic' style=''
+                                 id="<%= image.slide %>_figures_holder"></div>
+                        <% } %>
+                        <% if (image.width / image.height === 16 / 9) { %>
+                            <div class='presentation-figure-holder'
+                                 id="<%= image.slide %>_figures_holder"></div>
+                        <% } else { %>
+                            <div class='presentation-figure-holder --adaptive'
+                                 id="<%= image.slide %>_figures_holder"></div>
+
+                        <% } %>
+                    </div>
+                </section>
+            <% }) %>
+        </div>
+    </div>
+
+<% } else { %>
+    <p>No slides found.</p>
+<% } %>
+<script src="../public/reveal-js/reveal.js"></script>
+<script>
+  const images = JSON.parse('<%- JSON.stringify(images) %>')
+  const title = '<%- title %>'
+  const session = '<%- session %>'
+  const save_color = '<%- save_color %>'
+  const isSessionFinished = '<%- isSessionFinished %>'
+  const isDisableBtn = <%- isDisableBtn %>
+  const readonly = <%- readonly %>
+
+  let addinFigures = <%- figures %>
+
+
+  function fromBinary(encoded) {
+    const binary = atob(encoded);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < bytes.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return String.fromCharCode(...new Uint16Array(bytes.buffer));
+  }
+
+
+  const saved = JSON.parse('<%- JSON.stringify(saved) %>')
+
+  // let addinFigures = JSON.parse(fromBinary(figures))
+
+
+  const figuresName = [
+    'multiple-choice',
+    'range-selector',
+    'open-field',
+    'customer-details',
+    'button',
+    'calculator',
+    'date-field',
+    'personalization'
+  ]
+
+
+  addinFigures = addinFigures.map((figure) => {
+    const size = JSON.parse(figure.size)
+    const bounds = JSON.parse(figure.bounds)
+    const content_config = JSON.parse(figure.content_config)
+    return {
+      ...figure,
+      size,
+      bounds,
+      content_config: content_config.itemConfig[content_config.selectedItem],
+      figureName: figuresName[content_config.selectedItem],
+    }
+  })
+
+
+  const slides = images.map((image) => {
+    const figures = addinFigures.filter((figure) => figure.slide === image.slide)
+
+
+    return {
+      width: image.width,
+      height: image.height,
+      figuresHolder: `${image.slide}_figures_holder`,
+      figures,
+    }
+  })
+
+  const presentationObj = {
+    readonly,
+    title,
+    slidesCount: images.length,
+    slides,
+    session,
+    saved,
+    save_color,
+    isSessionFinished,
+    isDisableBtn
+  }
+
+
+  window.presentation = presentationObj
+
+
+  if (slides[0].width / slides[0].height === 4 / 3) {
+    Reveal.initialize({
+      width: 960,
+      height: 720,
+      hash: true,
+      // center: true,
+      // margin: 0.12,
+      // minScale: 0.8,
+      // maxScale: 3,
+    })
+  } else {
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      hash: true,
+      // center: true,
+      // margin: 0.12,
+      // minScale: 0.8,
+      // maxScale: 3,
+    })
+  }
+  window.Reveal = Reveal
+</script>
+</body>
+
+</html>

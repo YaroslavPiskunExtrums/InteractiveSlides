@@ -1,0 +1,9 @@
+.textAreaElement {
+  @apply p-1 border-b border-b-[#000] text-sm w-full leading-5 my-0 h-[63px] overflow-auto resize-y;
+  &:hover {
+    @apply bg-[#f8f8f8];
+  }
+  &:focus {
+    @apply outline-none shadow-none;
+  }
+}

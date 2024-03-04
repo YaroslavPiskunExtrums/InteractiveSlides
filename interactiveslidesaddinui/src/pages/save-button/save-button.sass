@@ -1,0 +1,89 @@
+.save-button
+  position: fixed
+  padding: 0
+  background-color: transparent
+  border: none
+  color: #fff
+  top: 1rem
+  left: 1rem
+  width: 2.5rem
+  height: 2.5rem
+  z-index: 10
+  transition: color 0.15s ease-in-out
+  cursor: pointer
+
+  &:hover
+    color: #ccc
+
+  &:disabled
+    color: #ccc
+    cursor: default
+
+  svg
+    width: 100%
+    height: 100%
+
+.pop-up
+  display: flex
+  padding: 0
+  background-color: #fff
+  border-radius: 0.5rem
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25)
+  position: fixed
+  top: 1rem
+  right: 1rem
+  z-index: 10
+  font-size: 1.25rem
+  align-items: center
+  justify-content: space-between
+  gap: 0.5rem
+  transition: transform 0.15s ease-in-out, width 0.15s ease-in-out, height 0.15s ease-in-out
+  width: 0
+  height: 0
+  scale: 0
+
+  .pop-up_message
+    display: none
+
+  &.--show
+    display: flex
+    width: 20rem
+    height: 3rem
+    scale: 1
+    padding: 0.2rem 1rem
+
+    .pop-up_message
+      display: block
+
+  &_message
+    flex-grow: 1
+    text-align: center
+
+  &_icon
+    height: 2rem
+    display: block
+    width: 2rem
+
+    &.--success
+      color: #4caf50
+
+    &.--error
+      color: #f44336
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+.loader
+  border: 3px solid #f3f3f3
+  border-top: 3px solid #3498db
+  border-radius: 50%
+  width: 24px
+  height: 24px
+  animation: spin 2s linear infinite
+  position: absolute
+  z-index: 10
+  top: 1.25rem
+  left: 3.5rem

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <title>Observe interactive presentation</title>
+  <link href='./assets/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
+  <link href='./assets/css/observe-presentation.css' rel='stylesheet' type='text/css' />
+
+
+  <script src='https://appsforoffice.microsoft.com/lib/1/hosted/office.js' type='text/javascript'></script>
+  <script src='./assets/js/jquery-3.6.0.min.js' type='text/javascript'></script>
+  <script src='./assets/js/bootstrap.min.js' type='text/javascript'></script>
+  <script src='./assets/js/configuration.js' type='text/javascript'></script>
+  <script src='./assets/js/authFetch.js'></script>
+  <script src='./assets/js/common.js' type='text/javascript'></script>
+  <script src='../Common/js/addinid.js' type='text/javascript'></script>
+</head>
+<body>
+<main>
+  <button id='backBtn' class='back-button'>
+    <svg class='back-button_icon' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><title>
+      keyboard-backspace</title>
+      <path fill='currentColor' d='M21,11H6.83L10.41,7.41L9,6L3,12L9,18L10.41,16.58L6.83,13H21V11Z' />
+    </svg>
+    <span class='back-button_text'>Back</span>
+  </button>
+
+  <div class='main-panel p-4' id='main-panel'>
+    <img class='w-75 mb-5' src='../Common/img/logo.png' alt='interactive slide logo' />
+    <small class='mb-2 text-center'>Your presentation is ready.<br />To look at it click the button below</small>
+    <button class='btn btn-primary' id='observeBtn'>Observe Presentation</button>
+  </div>
+</main>
+<script src='./assets/js/observePresentation.js' type='text/javascript'></script>
+</body>
+</html>
