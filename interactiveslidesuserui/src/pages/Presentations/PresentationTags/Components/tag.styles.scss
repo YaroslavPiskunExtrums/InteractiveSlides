@@ -1,0 +1,47 @@
+.tag {
+  display: flex;
+  align-items: center;
+  border: 2px solid rgba(213, 98, 73, 1);
+  width: max-content;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: -1px 10px 10px -7px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background-color: rgba(255, 86, 48, 0.87);
+    border: 2px solid rgba(255, 86, 48, 0.87);
+    color: #fff;
+    box-shadow: -1px 10px 10px -7px rgba(213, 98, 73, 0.75);
+    transition: all 0.25s ease-in-out;
+  }
+
+  &.--selected {
+    background-color: rgb(253, 85, 48);
+    color: #fff;
+    box-shadow: -1px 10px 10px -7px rgba(213, 98, 73, 0.75);
+    transition: all 0.25s ease-in-out;
+  }
+
+  &_title {
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+
+  &_length{
+    font-size: 14px;
+    margin-left: 8px;
+    margin-bottom: 0;
+  }
+
+  &_menu {
+    .--delete-item {
+      color: #dc3545;
+      &:hover {
+        color: #dc3545;
+      }
+    }
+  }
+}

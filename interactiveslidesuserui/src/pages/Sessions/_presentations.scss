@@ -1,0 +1,22 @@
+.presentations-page {
+  .action-button {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      font-size: 1.5rem;
+      display: block;
+    }
+  }
+  .action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+  .table-divider {
+    margin-top: 1rem;
+    border-bottom: 1px solid #dee2e6;
+  }
+}

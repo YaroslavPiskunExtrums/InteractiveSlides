@@ -1,0 +1,25 @@
+.presentation-color {
+  border: none;
+  width: 2rem;
+  height: 2rem;
+}
+
+.presentations-page {
+  .action-button {
+    &.--with-text {
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      gap: 0.25rem;
+      font-size: 1rem;
+    }
+  }
+  .--delete-folder {
+    color: #dc3545;
+    &:hover {
+      color: #dc3545;
+    }
+  }
+}

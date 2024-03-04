@@ -1,0 +1,59 @@
+.integrations_services {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+
+  &_image {
+    width: 3.5rem;
+    display: block;
+  }
+
+  &_image-container {
+    width: 20%;
+  }
+
+  &_service-name {
+    font-size: 1.05rem;
+    text-align: center;
+    width: 20%;
+  }
+
+  &_additional-info {
+    width: 20%;
+    font-size: 1.05rem;
+    text-align: center;
+  }
+
+  &_status-container {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_status {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #e51010;
+    box-shadow: 0 0 0.5rem #ff0000;
+
+    &.--active {
+      background-color: #1ee51e;
+      box-shadow: 0 0 0.5rem #00ff00;
+    }
+  }
+
+  &_control-button-container {
+    width: 20%;
+
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .sign-integration {
+    background-color: #FF5630;
+    border-color: #FF5630;
+  }
+}

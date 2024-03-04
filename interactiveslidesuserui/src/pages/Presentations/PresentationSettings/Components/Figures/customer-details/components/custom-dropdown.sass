@@ -1,0 +1,72 @@
+.dropdown, .input, .options, .dropdown-option
+  border-radius: 5px
+
+.input, .options
+  width: 100%
+  cursor: pointer
+  border: none
+  outline: none
+  position: absolute
+
+.no-results, .dropdown-option
+  width: 100%
+  border: none
+  padding: 4px
+  color: #292d34
+  cursor: pointer
+  text-align: center
+
+.dropdown
+  position: relative
+  background: white
+  box-shadow: -1px 10px 10px -7px rgba(213, 98, 73, 0.75)
+
+  .input
+    height: 100%
+    box-shadow: 0 2px 5px rgba(124, 130, 141, 0.2)
+    left: 0
+    top: 0
+
+  .options
+    padding: 0px 4px 4px 4px
+    box-shadow: 0 2px 5px rgb(124, 130, 141)
+    overflow: hidden
+    opacity: 0
+    transform: translateY(-50px)
+    visibility: hidden
+    max-height: 150px
+
+    overflow-y: auto
+
+    .search
+      z-index: 1
+      background: white
+
+    .dropdown-option
+      display: flex
+      justify-content: space-between
+      &:hover
+        color: white
+        background: rgba(241, 101, 69, 0.87)
+
+      .option-text
+        text-overflow: ellipsis
+        white-space: nowrap
+        overflow: hidden
+        text-align: start
+      .option-selected-mark
+        width: 10px
+        height: 20px
+        display: inline-block
+        margin-right: 10px
+
+.open .options
+  opacity: 1
+  visibility: visible
+  transform: translateY(0)
+  z-index: 1
+
+.ri-arrow-up-s-line
+  display: flex
+  justify-content: center
+  align-items: center

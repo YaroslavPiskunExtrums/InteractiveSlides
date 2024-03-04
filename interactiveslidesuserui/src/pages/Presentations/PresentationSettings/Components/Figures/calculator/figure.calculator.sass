@@ -1,0 +1,26 @@
+.figure-calculator
+  width: 100%
+  padding: 0.25rem
+
+.answer_input
+  font-size: 1rem
+
+.figure-answer-input
+  width: 100%
+  display: flex
+  .answer_input
+    outline: none
+    border: 1px solid transparent
+    display: block
+    padding: .375rem .75rem
+    font-weight: 400
+    line-height: 1.5
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+    width: 100%
+    background-clip: padding-box
+
+    &:disabled
+      background-color: #e9ecef
+      opacity: 1
+  textarea
+    resize: vertical

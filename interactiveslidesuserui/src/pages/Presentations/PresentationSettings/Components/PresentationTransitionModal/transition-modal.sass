@@ -1,0 +1,60 @@
+
+.transition-presentation-modal-btns-close-btn, .transition-presentation-modal-btns-save-btn
+	width: 10rem
+	transition: all 0.3s ease-in-out
+	border: none
+	font-size: 1rem
+	&:hover
+		transition: all 0.3s ease-in-out
+		scale: 1.05
+
+.transition-presentation-modal
+	height: 300px
+	overflow: hidden
+	display: flex
+	flex-direction: column
+	&-container
+		display: flex
+		overflow: hidden
+		height: 300px
+		gap: 15px
+	.transition-container
+		width: 310px
+		display: flex
+		flex-direction: column
+		&-tabs
+			padding: 0 10px
+			display: flex
+			gap: 15px
+			justify-content: center
+			&-tab
+				font-size: 16px
+				cursor: pointer
+				transition: all 0.3s ease-in-out
+				&:hover
+					color: rgb(255, 98, 73)
+					transition: all 0.3s ease-in-out
+					scale: 1.05
+			&-tab-selected
+				text-decoration: underline
+				color: rgba(213, 98, 73, 1)
+		&-list
+			font-size: 14px
+			overflow-y: auto
+			margin-bottom: 10px
+			flex: 1 1 auto
+			&-item
+				cursor: pointer
+				padding: 4px 10px
+				margin: 0 5px
+				border-radius: 4px
+				transition: all 0.3s ease-in-out
+				&:hover
+					color: rgba(255, 255, 255, 1)
+					background: rgb(213, 98, 73)
+					transition: all 0.3s ease-in-out
+					scale: 1.025
+			&-item-selected
+				color: rgba(255, 255, 255, 1)
+				background: rgba(213, 98, 73, 0.7)
+				transition: all 0.3s ease-in-out

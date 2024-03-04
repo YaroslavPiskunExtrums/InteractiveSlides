@@ -38,7 +38,7 @@ interactiveslidesuserui/*.log
 interactiveslidesuserui/logs
 interactiveslidesuserui/**/*.backup.*
 interactiveslidesuserui/**/*.back.*
-interactiveslidesuserui/
+
 interactiveslidesuserui/build
 interactiveslidesuserui/.idea
 

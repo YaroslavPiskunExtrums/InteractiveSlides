@@ -1,0 +1,29 @@
+.personalization-container-for-file {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 37.5px;
+  .personalization-input-file-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 35px);
+  }
+  .personalization-add-file-container {
+    gap: 20px;
+    margin-bottom: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    .personalization-file-input {
+      display: none;
+    }
+    .personalization-icon-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+.presentationTags {
+	//max-height: 170px;
+	//overflow-y: auto;
+	&-titleWrapper {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 0.5rem;
+		&-title {
+			font-size: 0.9rem;
+			font-weight: 600;
+			margin-bottom: 5px;
+		}
+		&-clearBtn {
+			border: none;
+			border-radius: 0.3rem;
+			font-size: 0.56rem;
+			transition: all 0.25s ease-in-out;
+			background: none;
+			text-decoration: underline;
+			color: #575757;
+			&:hover {
+				scale: 1.05;
+				transition: all 0.25s ease-in-out;
+			}
+		}
+	}
+
+	&-container {
+		display: flex;
+		gap: 20px;
+		flex-wrap: wrap;
+		&_btn {
+			font-size: 1.2rem;
+			border: none;
+			background: #3577f1;
+			color: white;
+			border-radius: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: auto 0;
+			transition: all 0.25s ease-in-out;
+
+			&:hover {
+				background: #2d65cd;
+				transition: all 0.25s ease-in-out;
+			}
+
+			&-text {
+				font-size: 12px;
+				margin-left: 5px;
+			}
+		}
+	}
+}

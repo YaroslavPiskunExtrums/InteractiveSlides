@@ -1,0 +1,52 @@
+.presentation-title-wrapper {
+	display: flex;
+	justify-content: center;
+	.presentation-title-container {
+		display: inline-flex;
+		align-items: center;
+		margin: 0 auto;
+		font-size: 30px;
+
+		.presentation-title-text {
+			margin: 2px 10px 2px 0;
+		}
+
+		.presentation-title-input {
+			background-color: transparent;
+			border: none;
+			border-bottom: 2px solid #e0d6d6;
+			margin-right: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			//max-width: 150px;
+		}
+
+		i	{
+			font-size: 20px;
+			cursor: pointer;
+			transition: all 0.25s ease-in-out;
+		
+			&:hover {
+				scale: 1.2;
+				transition: all 0.25s ease-in-out;
+			}
+		}
+
+		.presentation-title-change-icon {
+			&:hover {
+				color: green;
+			}
+		}
+		.presentation-title-confirm-icon{
+			&:hover {
+					color: green;
+				}
+		}
+		.presentation-title-close-icon{
+			&:hover {
+					color: red;
+				}
+		}
+
+	}
+}
